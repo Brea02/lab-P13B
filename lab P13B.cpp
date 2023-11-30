@@ -6,13 +6,15 @@ using namespace std;
 //function prototypes
 bool isLeapYear(int year);
 int daysInMonth(int month, int year);
+int dayOfWeek(int month, int day, int year);
 
 
 int main() {
-	cout << "Enter a month and year or Q to quit: ";
+	cout << "Enter a date or Q to quit: ";
 	int year;
 	int month;
-	cin >> month >> year;
+	int day;
+	cin >> month >> day >> year;
 	if (month == 0) {
 		return 0;
 	}
@@ -30,15 +32,36 @@ int main() {
 	//}
 
 	const string MONTHS[] = { "blank", "January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
-
 	string month_word = MONTHS[month];
 
-	cout << month_word << " " << year << " has " << days << " days.";
+	const string WKDAY[] = { "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday" };
+
+	//cout << month_word << " " << year << " has " << days << " days.";
+	cout << WKDAY[dayOfWeek(month, day, year)] << ", " << month_word << " " << day << ", " << year;
 	
 
 }
 
 //funcitons
+
+int dayOfWeek(int month, int day, int year) {
+	int weekDay;
+	const int MODMONTH[] = { 0, 13, 14, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+	int mod_year;
+	if (month > 2 && month < 13) {
+		mod_year = year;
+	}
+	else if (month < 3) {
+		mod_year = year - 1;
+	}
+	//Zeller Congruence
+	int zeller1 = (((MODMONTH[month]+1) *26) /10);
+	int formula = (day + zeller1 + mod_year + (mod_year / 4 ) + 6*(mod_year / 100) + (mod_year/400));
+
+	//using the mod 7 to get day
+	int mod_seven = formula % 7;
+	return mod_seven;
+}
 
 int daysInMonth(int month, int year) {
 	const int MONTHDAYS[] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
