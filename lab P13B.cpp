@@ -1,5 +1,6 @@
 #include<iostream>
 #include<string>
+#include<iomanip>
 
 using namespace std;
 
@@ -20,15 +21,17 @@ int main() {
 	}
 
 	//array calender from P13B-4
-	//							Sa Fr Th We Tu Mo Su
-	//returned by DoW function: 00 01 02 03 04 05 06 07 08 09 10 11 12
-	//character positions:		012345678901234567890123456789012345678
-	const string CALENDAR[] = { "                   1  2  3  4  5  6  7 ",
-							   " 2  3  4  5  6  7  8  9 10 11 12 13 14 ",
-							   " 9 10 11 12 13 14 15 16 17 18 19 20 21 ",
-							   "16 17 18 19 20 21 22 23 24 25 26 27 28 ",
-							   "23 24 25 26 27 28 29 30 31		       ",
-							   "30, 31								   " };
+	//							 Sa Fr Th We Tu Mo Su
+	//returned by DoW function:  00 01 02 03 04 05 06 07 08 09 10 11 12
+	//character positions:		 012345678901234567890123456789012345678
+	/*
+	const string CALENDAR[] =  {"                   1  2  3  4  5  6  7 ",
+							    " 2  3  4  5  6  7  8  9 10 11 12 13 14 ",
+							    " 9 10 11 12 13 14 15 16 17 18 19 20 21 ",
+							    "16 17 18 19 20 21 22 23 24 25 26 27 28 ",
+							    "23 24 25 26 27 28 29 30 31		        ",
+							    "30, 31						   		    "};
+	*/
 
 
 	int days = daysInMonth(month, year);
@@ -50,6 +53,7 @@ int main() {
 
 	//cout << month_word << " " << year << " has " << days << " days.";
 	cout << WKDAY[dayOfWeek(month, day, year)] << ", " << month_word << " " << day << ", " << year;
+
 	
 
 }
